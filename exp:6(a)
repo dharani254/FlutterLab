@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(CustomWidgetApp());
+}
+
+class CustomWidgetApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Custom Widget Example')),
+        body: Center(
+          child: MyButton(text: 'Click Me'), // using custom widget
+        ),
+      ),
+    );
+  }
+}
+
+// Custom widget definition
+class MyButton extends StatelessWidget {
+  final String text;
+
+  MyButton({required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('You clicked $text!')),
+        );
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.teal,
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(fontSize: 18, color: Colors.white),
+      ),
+    );
+  }
+}
