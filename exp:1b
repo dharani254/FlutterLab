@@ -1,0 +1,11 @@
+void main() {
+  String name = "Flutter Learner";
+  int age = 21;
+  double version = 3.7;
+  bool isLearning = true;
+
+  print("Name: $name");
+  print("Age: $age");
+  print("Flutter Version: $version");
+  print("Learning Flutter: $isLearning");
+}
