@@ -1,71 +1,43 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(SimpleFormApp());
-}
+void main() => runApp(MaterialApp(home: FormInput()));
 
-class SimpleFormApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: Text('Simple Form')),
-        body: Padding(
-          padding: EdgeInsets.all(16),
-          child: MyForm(),
-        ),
-      ),
-    );
-  }
-}
-
-class MyForm extends StatefulWidget {
-  @override
-  _MyFormState createState() => _MyFormState();
-}
-
-class _MyFormState extends State<MyForm> {
-  final _formKey = GlobalKey<FormState>();
+class FormInput extends StatelessWidget {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // Name input
-          TextFormField(
-            controller: _nameController,
-            decoration: InputDecoration(labelText: 'Name'),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Enter your name';
-              }
-              return null;
-            },
-          ),
-
-          // Email input
-          TextFormField(
-            controller: _emailController,
-            decoration: InputDecoration(labelText: 'Email'),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Enter your email';
-              } else if (!value.contains('@')) {
-                return 'Enter a valid email';
-              }
-              return null;
-            },
-          ),
-
-          SizedBox(height: 20),
-
-          // Submit button
-          ElevatedButton(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                Scaffo
+    return Scaffold(
+      appBar: AppBar(title: Text('Form Input')),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: _nameController,
+              decoration: InputDecoration(labelText: 'Name'),
+            ),
+            TextField(
+              controller: _emailController,
+              decoration: InputDecoration(labelText: 'Email'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              child: Text('Submit'),
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                        'Name: ${_nameController.text}, Email: ${_emailController.text}'),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
