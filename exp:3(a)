@@ -1,0 +1,40 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(ResponsiveUI());
+}
+
+class ResponsiveUI extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Responsive UI Example')),
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            double screenWidth = constraints.maxWidth;
+
+            // Change color and size based on screen width
+            Color boxColor = screenWidth < 600 ? Colors.blue : Colors.green;
+            double boxSize = screenWidth < 600 ? 100 : 200;
+
+            return Center(
+              child: Container(
+                width: boxSize,
+                height: boxSize,
+                color: boxColor,
+                child: Center(
+                  child: Text(
+                    screenWidth < 600 ? 'Mobile View' : 'Tablet/Desktop View',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
