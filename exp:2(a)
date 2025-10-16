@@ -1,0 +1,33 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyWidgetsApp());
+}
+
+class MyWidgetsApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Basic Widgets')),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Hello Flutter!', style: TextStyle(fontSize: 24)),
+              Image.network(
+                'https://flutter.dev/images/flutter-logo-sharing.png',
+                width: 100,
+              ),
+              Container(
+                color: Colors.blue,
+                padding: EdgeInsets.all(10),
+                child: Text('This is a Container', style: TextStyle(color: Colors.white)),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
