@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyStatefulApp());
+}
+
+class MyStatefulApp extends StatefulWidget {
+  @override
+  _MyStatefulAppState createState() => _MyStatefulAppState();
+}
+
+class _MyStatefulAppState extends State<MyStatefulApp> {
+  int count = 0; // variable that changes
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Stateful Widget')),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Count: $count', style: TextStyle(fontSize: 24)),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    count++; // updates UI
+                  });
+                },
+                child: Text('Increase Count'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
