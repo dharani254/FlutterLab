@@ -1,0 +1,40 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyLayoutApp());
+}
+
+class MyLayoutApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Layouts Example')),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Row Example
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.home, color: Colors.green),
+                Icon(Icons.star, color: Colors.orange),
+                Icon(Icons.settings, color: Colors.blue),
+              ],
+            ),
+            SizedBox(height: 30),
+
+            // Stack Example
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(width: 100, height: 100, color: Colors.yellow),
+                Text('Stack'),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
