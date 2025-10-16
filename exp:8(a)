@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(FadeAnimationApp());
+
+class FadeAnimationApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(home: FadeDemo());
+  }
+}
+
+class FadeDemo extends StatefulWidget {
+  @override
+  _FadeDemoState createState() => _FadeDemoState();
+}
+
+class _FadeDemoState extends State<FadeDemo> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+    _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
+    _controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Fade Animation')),
+      body: Center(
+        child: FadeTransition(
+          opacity: _animation,
+          child: Text('Hello Flutter!', style: TextStyle(fontSize: 30)),
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+}
