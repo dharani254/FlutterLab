@@ -1,0 +1,33 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MediaQueryExample());
+}
+
+class MediaQueryExample extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('MediaQuery & Breakpoints')),
+        body: Builder(
+          builder: (context) {
+            double width = MediaQuery.of(context).size.width;
+
+            if (width < 600) {
+              // Mobile layout
+              return Center(
+                child: Text('This is Mobile View', style: TextStyle(fontSize: 20)),
+              );
+            } else {
+              // Tablet/Desktop layout
+              return Center(
+                child: Text('This is Tablet/Desktop View', style: TextStyle(fontSize: 24)),
+              );
+            }
+          },
+        ),
+      ),
+    );
+  }
+}
